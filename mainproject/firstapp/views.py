@@ -6,5 +6,5 @@ def home(request):
     return render(request, "home.html",{"name":"Prabesh"})
 
 def result(request):
-    age = 2024 - int(request.GET['year'])
+    age = 2024 - int(request.POST['year'])
     return render(request, 'result.html', {"name":"Prabesh","age":age})

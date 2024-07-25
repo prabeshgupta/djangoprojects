@@ -2,7 +2,8 @@
 
 {% block content %}
 <h1> Welcome to home page, {{name}} </h1>
-<form action="result">
+<form action="result" method="post">
+    {% csrf_token %}
     <label for="year">Enter your Birth Year</label><br>
     <input type="text" name="year"><br><br>
 
