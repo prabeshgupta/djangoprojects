@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import InformationModel
 
-# Register your models here.
+#py manage.py createsuperuser
+
+admin.site.register(InformationModel)

@@ -1,4 +1,6 @@
+<!-- Jinja Tag -->
 {% load static %}
+{% static "images" as baseURL %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +15,7 @@
 <body>
     <div class="container">
         <h1 id="heading">About Me</h1>
-        <img src="{% static 'images/admin.png' %}" alt="Profile Image" id="profile">
+        <img src="{{baseURL}}/{{info.img}}" alt="Profile Image" id="profile">
         <p>Hi, I am Prabesh Gupta. I am a skilled web developer with a passion for graphic designing. I specialize in
             developing visually stunning and user-friendly websites. My proficiency in graphic designing allows me to
             create amazing content that enhances the overall online experience.</p>
