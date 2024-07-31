@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 def register(request):
     if request.method == 'POST': 
@@ -16,12 +18,35 @@ def register(request):
                     User.objects.create_user(first_name= first_name, last_name=last_name,email=email, username=username, password=password)
                     return redirect('/secondapp/about/')
                 else:
-                    print("Email already used")
+                    messages.info(request,"Email already used")
+                    return redirect('register')
             else:
-                print("Username already taken")
+                messages.info(request,"Username already taken")
+                return redirect('register')
         else:
-            print("Password Not Matched")
+            messages.info(request,"Password Not Matched")
+            return redirect('register')
     else:
         return render(request, 'register.html')
         
 
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(request,username= username, password= password)
+
+        if user is not None:
+            login(request,user)
+            return redirect('/secondapp/about/')
+        else:
+            messages.info(request, "Username or Password mismatched")
+            return redirect('user_login')
+    else:
+        return render(request, 'login.html')
+    
+
+def user_logout(request):
+    logout(request)
+    return redirect("/secondapp/about")
