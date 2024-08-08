@@ -65,3 +65,12 @@ a = City.objects.all().exclude(city='Bhaktapur')
 b = City.objects.all().exclude(city__in=['Dolpa','Pokhara'])
 print(a.order_by('city'))
 print(b)
+
+# Update a row
+a = City.objects.get(id=3)
+a.city = "Dang"
+a.save()
+
+# Delete a row
+a = City.objects.get(id=4)
+a.delete()
